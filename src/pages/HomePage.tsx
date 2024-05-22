@@ -12,8 +12,8 @@ const HomePage = () => {
 	}) => (
 		<a href={href}>
 			<div
-				className={`p-2 rounded-md bg-cyan-200 text-gray-800 w-32 text-center hover:bg-cyan-500 shadow-md shadow-gray-700 ${className}`}>
-				<h3 className='text-xl'>{children}</h3>
+				className={`px-8 py-4 rounded-md bg-cyan-200 text-gray-800 text-center hover:bg-cyan-500 shadow-md shadow-gray-700 ${className}`}>
+				<h2 className='text-xl'>{children}</h2>
 			</div>
 		</a>
 	);
@@ -26,11 +26,11 @@ const HomePage = () => {
 					<span className='text-green-500'>.js</span>
 				</h1>
 				<div className='flex flex-col gap-8 h-full justify-center'>
-					<MenuButton href='/snake'>START</MenuButton>
+					<MenuButton href='/snake'>PLAY</MenuButton>
 					<MenuButton href='/settings'>SETTINGS</MenuButton>
 				</div>
 				<div>
-					<p className='text-gray-500 text-sm'>
+					<p className='text-gray-300 text-sm'>
 						Made with ❤️ by{" "}
 						<a
 							href='https://github.com/botero-studios'
