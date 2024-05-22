@@ -4,7 +4,7 @@ import { Box, Cylinder, OrbitControls } from "@react-three/drei";
 import { CylinderCollider, MeshCollider, RigidBody } from "@react-three/rapier";
 import { MeshNormalMaterial } from "three";
 
-export function Experience() {
+export function SnakeScene() {
 	return (
 		<>
 			<OrbitControls />

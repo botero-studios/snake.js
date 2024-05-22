@@ -3,7 +3,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { Suspense, useMemo } from "react";
-import { Experience } from "@/app/components/ThreeScene";
+import { SnakeScene } from "@/app/components/SnakeScene";
 
 export default function Home() {
 	return (
@@ -12,7 +12,7 @@ export default function Home() {
 				<color attach='background' args={["#dbecfb"]} />
 				<Suspense>
 					<Physics debug>
-						<Experience />
+						<SnakeScene />
 					</Physics>
 				</Suspense>
 			</Canvas>
