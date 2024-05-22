@@ -1,6 +1,5 @@
-import Image from "next/image";
-import ThreeScene from "./ThreeScene";
+import HomePage from "@/pages/HomePage";
 
 export default function Home() {
-	return <ThreeScene />;
+	return <HomePage />;
 }
