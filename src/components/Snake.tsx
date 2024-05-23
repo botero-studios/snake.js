@@ -85,8 +85,4 @@ const Snake: React.FC = () => {
 	);
 };
 
-// function useFrame(arg0: () => void) {
-// 	throw new Error("Function not implemented.");
-// }
-
 export default Snake;
