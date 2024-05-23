@@ -1,7 +1,7 @@
 "use client";
 
 import Position from "@/lib/Position";
-import { use, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import SnakeHead from "../models/SnakeHead";
 import SnakeFlatBody from "../models/SnakeFlatBody";
 import SnakeTail from "../models/SnakeTail";
