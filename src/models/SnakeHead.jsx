@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 
 const SnakeHead = props => {
-	const { nodes, materials } = useGLTF("models/Head.glb");
+	const { nodes, materials } = useGLTF("models/snake/Head.glb");
 	return (
 		<group {...props} dispose={null}>
 			<mesh
@@ -16,6 +16,6 @@ const SnakeHead = props => {
 	);
 };
 
-useGLTF.preload("models/Head.glb");
+useGLTF.preload("models/snake/Head.glb");
 
 export default SnakeHead;

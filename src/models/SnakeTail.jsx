@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 
 const SnakeTail = props => {
-	const { nodes, materials } = useGLTF("models/Tail.glb");
+	const { nodes, materials } = useGLTF("models/snake/Tail.glb");
 	return (
 		<group {...props} dispose={null}>
 			<mesh geometry={nodes.Tail.geometry} material={materials.mat18} />
@@ -9,6 +9,6 @@ const SnakeTail = props => {
 	);
 };
 
-useGLTF.preload("models/Tail.glb");
+useGLTF.preload("models/snake/Tail.glb");
 
 export default SnakeTail;

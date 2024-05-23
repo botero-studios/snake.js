@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 
 const SnakeFlatBody = props => {
-	const { nodes, materials } = useGLTF("models/FlatBody.glb");
+	const { nodes, materials } = useGLTF("models/snake/FlatBody.glb");
 	return (
 		<group {...props} dispose={null}>
 			<mesh geometry={nodes.Flat_Body.geometry} material={materials.mat18} />
@@ -9,6 +9,6 @@ const SnakeFlatBody = props => {
 	);
 };
 
-useGLTF.preload("models/FlatBody.glb");
+useGLTF.preload("models/snake/FlatBody.glb");
 
 export default SnakeFlatBody;

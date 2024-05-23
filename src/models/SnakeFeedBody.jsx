@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 
 export function Model(props) {
-	const { nodes, materials } = useGLTF("models/FeedBody.glb");
+	const { nodes, materials } = useGLTF("models/snake/FeedBody.glb");
 	return (
 		<group {...props} dispose={null}>
 			<mesh geometry={nodes.Feed_Body.geometry} material={materials.mat18} />
@@ -9,4 +9,4 @@ export function Model(props) {
 	);
 }
 
-useGLTF.preload("models/FeedBody.glb");
+useGLTF.preload("models/snake/FeedBody.glb");
