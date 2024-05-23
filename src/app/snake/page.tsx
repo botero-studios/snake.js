@@ -7,13 +7,14 @@ import { SnakeScene } from "@/components/SnakeScene";
 import Snake from "@/components/Snake";
 import { KeyboardControls, KeyboardControlsEntry } from "@react-three/drei";
 
+enum Controls {
+	up = "up",
+	down = "down",
+	left = "left",
+	right = "right",
+}
+
 export default function SnakeIndex() {
-	enum Controls {
-		up = "up",
-		down = "down",
-		left = "left",
-		right = "right",
-	}
 	const map = useMemo<KeyboardControlsEntry<Controls>[]>(
 		() => [
 			{ name: Controls.up, keys: ["ArrowUp", "KeyW"] },
@@ -39,3 +40,5 @@ export default function SnakeIndex() {
 		</div>
 	);
 }
+
+export { Controls };

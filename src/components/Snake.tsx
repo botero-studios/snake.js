@@ -1,41 +1,37 @@
 "use client";
 
 import Position from "@/lib/Position";
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import SnakeHead from "../models/SnakeHead";
 import SnakeFlatBody from "../models/SnakeFlatBody";
 import SnakeTail from "../models/SnakeTail";
 import { useKeyboardControls } from "@react-three/drei";
 import DirectionType from "@/types/DirectionType";
+import { Controls } from "@/app/snake/page";
+import { useFrame } from "@react-three/fiber";
 
 const Snake: React.FC = () => {
-	const initReference = useRef(true);
 	const [snake, setSnake] = useState<DirectionType[]>([
 		{ position: { x: 0, y: 0, z: 0.1 }, rotation: Position.UP.rotation },
 		{ position: { x: 0, y: -0.5, z: 0.1 }, rotation: Position.UP.rotation },
 		{ position: { x: 0, y: -1, z: 0.1 }, rotation: Position.UP.rotation },
 	]);
 	const [direction, setDirection] = useState<DirectionType>(Position.UP);
-	const upPressed = useKeyboardControls(state => state.up);
-	const downPressed = useKeyboardControls(state => state.DOWN);
-	const leftPressed = useKeyboardControls(state => state.LEFT);
-	const rightPressed = useKeyboardControls(state => state.RIGHT);
+	const [lastMoveTime, setLastMoveTime] = useState(0);
 
+	const upPressed = useKeyboardControls(state => state[Controls.up]);
+	const downPressed = useKeyboardControls(state => state[Controls.down]);
+	const leftPressed = useKeyboardControls(state => state[Controls.left]);
+	const rightPressed = useKeyboardControls(state => state[Controls.right]);
+
+	const moveMilliseconds = 300;
 	const scaleRatio = 1.75;
 	const scale = [scaleRatio, scaleRatio, scaleRatio];
 
-	useEffect(() => {
-		if (initReference.current) {
-			moveSnake();
-			initReference.current = false;
-		}
-		if (upPressed) setDirection(Position.UP);
-		if (downPressed) setDirection(Position.DOWN);
-		if (leftPressed) setDirection(Position.LEFT);
-		if (rightPressed) setDirection(Position.RIGHT);
-	}, []);
-
-	const moveSnake = () => {
+	useFrame(state => {
+		const currentTime = state.clock.getElapsedTime() * 1000;
+		if (currentTime - lastMoveTime <= moveMilliseconds) return;
+		setLastMoveTime(currentTime);
 		setSnake(prevSnake => {
 			const newPosition = Position.sum(
 				prevSnake[0].position,
@@ -50,7 +46,18 @@ const Snake: React.FC = () => {
 
 			return newSnake;
 		});
-		setTimeout(moveSnake, 1000);
+	});
+
+	useFrame(() => {
+		if (upPressed) move(Position.UP);
+		if (downPressed) move(Position.DOWN);
+		if (leftPressed) move(Position.LEFT);
+		if (rightPressed) move(Position.RIGHT);
+	});
+
+	const move = (newDirection: DirectionType) => {
+		if (Position.opposite(direction.position, newDirection.position)) return;
+		setDirection(newDirection);
 	};
 
 	const snakeHead = snake[0];
