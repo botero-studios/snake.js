@@ -2,9 +2,6 @@
 
 import { OrbitControls } from "@react-three/drei";
 import Stage from "@/components/Stage";
-import EggController from "@/controllers/EggController";
-import Frog from "@/models/Frog";
-import MiceController from "@/controllers/MiceController";
 
 export function SnakeScene() {
 	return (
@@ -18,10 +15,6 @@ export function SnakeScene() {
 				castShadow
 				color={"#9e69da"}
 			/>
-
-			<EggController scale={[1.5, 1.5, 1.5]} position={[5, 0.5, -5]} />
-			<Frog scale={[0.15, 0.15, 0.15]} position={[5, 1, 5]} />
-			<MiceController scale={[1, 1, 1]} position={[1, 0, 1]} />
 
 			{/* STAGE */}
 			<Stage />

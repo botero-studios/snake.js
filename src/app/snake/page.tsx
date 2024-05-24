@@ -5,6 +5,9 @@ import { Physics } from "@react-three/rapier";
 import { Suspense, useMemo } from "react";
 import { SnakeScene } from "@/components/SnakeScene";
 import Snake from "@/components/Snake";
+import EggController from "@/controllers/EggController";
+import Frog from "@/models/Frog";
+import MiceController from "@/controllers/MiceController";
 import { KeyboardControls, KeyboardControlsEntry } from "@react-three/drei";
 
 enum Controls {
@@ -33,6 +36,9 @@ export default function SnakeIndex() {
 						<Physics debug>
 							<SnakeScene />
 							{/* <Snake /> */}
+							<EggController scale={[1.5, 1.5, 1.5]} position={[5, 0.5, -5]} />
+							<Frog scale={[0.15, 0.15, 0.15]} position={[5, 1, 5]} />
+							<MiceController scale={[1, 1, 1]} position={[1, 0, 1]} />
 						</Physics>
 					</Suspense>
 				</Canvas>
