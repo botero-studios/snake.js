@@ -2,29 +2,29 @@
 
 import { OrbitControls } from "@react-three/drei";
 import Stage from "@/components/Stage";
-import Egg from "@/components/Egg";
+import EggController from "@/components/EggController";
 import Frog from "@/components/Frog";
-import Mice from "@/components/Mice";
+import MiceController from "./MiceController";
 
 export function SnakeScene() {
-	return (
-		<>
-			<OrbitControls />
-			{/* LIGHTS */}
-			<ambientLight intensity={1} />
-			<directionalLight
-				position={[5, 5, 5]}
-				intensity={0.8}
-				castShadow
-				color={"#9e69da"}
-			/>
+    return (
+        <>
+            <OrbitControls />
+            {/* LIGHTS */}
+            <ambientLight intensity={1} />
+            <directionalLight
+                position={[5, 5, 5]}
+                intensity={0.8}
+                castShadow
+                color={"#9e69da"}
+            />
 
-			<Egg scale={[6, 6, 6]} position={[1, 1, 1]} />
-			<Frog scale={[0.15, 0.15, 0.15]} position={[5, 1, 5]} />
-			<Mice scale={[6, 6, 6]} position={[1, 1, 5]} />
+            <EggController scale={[6, 6, 6]} position={[1, 1, 1]} />
+            <Frog scale={[0.15, 0.15, 0.15]} position={[5, 1, 5]} />
+            <MiceController />
 
-			{/* STAGE */}
-			<Stage />
-		</>
-	);
+            {/* STAGE */}
+            <Stage />
+        </>
+    );
 }
