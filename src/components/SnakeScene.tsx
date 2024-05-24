@@ -2,9 +2,9 @@
 
 import { OrbitControls } from "@react-three/drei";
 import Stage from "@/components/Stage";
-import EggController from "@/components/EggController";
-import Frog from "@/components/Frog";
-import MiceController from "./MiceController";
+import EggController from "@/controllers/EggController";
+import Frog from "@/models/Frog";
+import MiceController from "@/controllers/MiceController";
 
 export function SnakeScene() {
     return (
