@@ -35,7 +35,7 @@ export default function SnakeIndex() {
 					<Suspense>
 						<Physics debug>
 							<SnakeScene />
-							{/* <Snake /> */}
+							<Snake />
 							<EggController scale={[1.5, 1.5, 1.5]} position={[5, 0.5, -5]} />
 							<FrogController
 								scale={[0.04, 0.04, 0.04]}

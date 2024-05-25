@@ -7,7 +7,6 @@ import {
 	interactionGroups,
 } from "@react-three/rapier";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { min } from "three/examples/jsm/nodes/Nodes.js";
 
 export default function EggController(props: any) {
 	const rigidBody = useRef<any>();
@@ -22,18 +21,23 @@ export default function EggController(props: any) {
 		const randomPos = Math.random() * (MAX - MIN) + MIN;
 
 		let translation = { x: 0, y: 0, z: 0 };
-		if (rotation == Rotation.UP) {
-			translation.x = -15;
-			translation.z = randomPos;
-		} else if (rotation == Rotation.DOWN) {
-			translation.x = 15;
-			translation.z = randomPos;
-		} else if (rotation == Rotation.LEFT) {
-			translation.x = randomPos;
-			translation.z = 15;
-		} else if (rotation == Rotation.RIGHT) {
-			translation.x = randomPos;
-			translation.z = -15;
+		switch (rotation) {
+			case Rotation.UP:
+				translation.x = -15;
+				translation.z = randomPos;
+				break;
+			case Rotation.DOWN:
+				translation.x = 15;
+				translation.z = randomPos;
+				break;
+			case Rotation.LEFT:
+				translation.x = randomPos;
+				translation.z = 15;
+				break;
+			case Rotation.RIGHT:
+				translation.x = randomPos;
+				translation.z = -15;
+				break;
 		}
 		rigidBody.current.setTranslation(translation);
 
@@ -46,23 +50,27 @@ export default function EggController(props: any) {
 
 	useFrame(() => {
 		if (jump) {
+			setJump(false);
 			let impulse = { x: 0, y: 0, z: 0 };
-			if (rotation == Rotation.UP) {
-				impulse.x += JUMP_DISTANCE;
-				impulse.y += JUMP_FORCE;
-			} else if (rotation == Rotation.DOWN) {
-				impulse.x -= JUMP_DISTANCE;
-				impulse.y += JUMP_FORCE;
-			} else if (rotation == Rotation.LEFT) {
-				impulse.z -= JUMP_DISTANCE;
-				impulse.y += JUMP_FORCE;
-			} else if (rotation == Rotation.RIGHT) {
-				impulse.z += JUMP_DISTANCE;
-				impulse.y += JUMP_FORCE;
+			switch (rotation) {
+				case Rotation.UP:
+					impulse.x += JUMP_DISTANCE;
+					impulse.y += JUMP_FORCE;
+					break;
+				case Rotation.DOWN:
+					impulse.x -= JUMP_DISTANCE;
+					impulse.y += JUMP_FORCE;
+					break;
+				case Rotation.LEFT:
+					impulse.z -= JUMP_DISTANCE;
+					impulse.y += JUMP_FORCE;
+					break;
+				case Rotation.RIGHT:
+					impulse.z += JUMP_DISTANCE;
+					impulse.y += JUMP_FORCE;
+					break;
 			}
 			rigidBody.current.applyImpulse(impulse);
-
-			setJump(false);
 		}
 	});
 
