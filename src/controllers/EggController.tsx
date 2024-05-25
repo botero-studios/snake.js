@@ -7,6 +7,7 @@ export default function EggController(props: any) {
 	const egg = useRef<any>();
 
 	useFrame(() => {
+		if (!egg.current) return;
 		egg.current.rotation.y += 0.01;
 	});
 

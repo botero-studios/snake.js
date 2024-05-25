@@ -1,5 +1,9 @@
 import Mice from "@/models/Mice";
-import { CapsuleCollider, RigidBody } from "@react-three/rapier";
+import {
+	CapsuleCollider,
+	RigidBody,
+	interactionGroups,
+} from "@react-three/rapier";
 import { useFrame } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import Rotation from "@/lib/Rotation";
@@ -8,26 +12,29 @@ export default function MiceController(props: any) {
 	const rigidBody = useRef<any>();
 	const mice = useRef<any>();
 	const MOVEMENT_SPEED = 0.005;
+	const MAX_VELOCITY = 1.5;
 	const [direction, setDirection] = useState(Rotation.UP);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setDirection(Rotation.getRandomRotation());
-			rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 });
+			if (rigidBody.current) rigidBody.current.setLinvel({ x: 0, y: 0, z: 0 });
 		}, 2000);
 		return () => clearInterval(interval);
 	}, []);
 
 	useFrame(() => {
+		if (!rigidBody.current) return;
 		let impulse = { x: 0, y: 0, z: 0 };
-		if (direction == Rotation.UP) {
-			impulse.x = -MOVEMENT_SPEED;
-		} else if (direction == Rotation.DOWN) {
-			impulse.x = MOVEMENT_SPEED;
-		} else if (direction == Rotation.LEFT) {
-			impulse.z = MOVEMENT_SPEED;
-		} else if (direction == Rotation.RIGHT) {
-			impulse.z = -MOVEMENT_SPEED;
+		const linvel = rigidBody.current.linvel();
+		if (direction == Rotation.UP && linvel.x > -MAX_VELOCITY) {
+			impulse.x -= MOVEMENT_SPEED;
+		} else if (direction == Rotation.DOWN && linvel.x < MAX_VELOCITY) {
+			impulse.x += MOVEMENT_SPEED;
+		} else if (direction == Rotation.LEFT && linvel.z < MAX_VELOCITY) {
+			impulse.z += MOVEMENT_SPEED;
+		} else if (direction == Rotation.RIGHT && linvel.z > -MAX_VELOCITY) {
+			impulse.z -= MOVEMENT_SPEED;
 		}
 		rigidBody.current.applyImpulse(impulse);
 	});
@@ -39,7 +46,8 @@ export default function MiceController(props: any) {
 				position={props.position}
 				colliders={false}
 				ref={rigidBody}
-				enabledRotations={[false, true, false]}>
+				enabledRotations={[false, true, false]}
+				collisionGroups={interactionGroups(3, [2, 0])}>
 				<CapsuleCollider
 					args={[0.8, 0.4]}
 					scale={[0.2, 0.6, 1]}
