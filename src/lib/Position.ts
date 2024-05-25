@@ -1,6 +1,6 @@
 import DirectionType from "@/types/DirectionType";
 import PositionType from "@/types/PositionType";
-import Rotation from "./Rotation";
+import Rotation from "@/lib/Rotation";
 
 const UP: DirectionType = {
 	position: { x: 0, y: -0.5, z: 0 },
