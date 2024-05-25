@@ -8,7 +8,7 @@ import {
 } from "@react-three/rapier";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-export default function EggController(props: any) {
+export default function FrogController(props: any) {
 	const rigidBody = useRef<any>();
 	const JUMP_FORCE = 0.5;
 	const JUMP_DISTANCE = 0.22;
