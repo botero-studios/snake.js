@@ -1,21 +1,22 @@
 import DirectionType from "@/types/DirectionType";
 import PositionType from "@/types/PositionType";
+import Rotation from "./Rotation";
 
 const UP: DirectionType = {
 	position: { x: 0, y: -0.5, z: 0 },
-	rotation: { x: 0, y: 0, z: 0 },
+	rotation: { x: 0, y: 0, z: Rotation.UP },
 };
 const DOWN: DirectionType = {
 	position: { x: 0, y: 0.5, z: 0 },
-	rotation: { x: 0, y: 0, z: Math.PI },
+	rotation: { x: 0, y: 0, z: Rotation.DOWN },
 };
 const LEFT: DirectionType = {
 	position: { x: -0.5, y: 0, z: 0 },
-	rotation: { x: 0, y: 0, z: Math.PI / 2 },
+	rotation: { x: 0, y: 0, z: Rotation.LEFT },
 };
 const RIGHT: DirectionType = {
 	position: { x: 0.5, y: 0, z: 0 },
-	rotation: { x: 0, y: 0, z: -Math.PI / 2 },
+	rotation: { x: 0, y: 0, z: Rotation.RIGHT },
 };
 
 const sum = (a: PositionType, b: PositionType) => ({
