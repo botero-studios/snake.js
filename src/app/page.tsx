@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Home = () => {
 	const MenuButton = ({
 		className,
@@ -8,12 +10,12 @@ const Home = () => {
 		href: string;
 		children: string;
 	}) => (
-		<a href={href}>
+		<Link href={href}>
 			<div
 				className={`px-8 py-4 rounded-md bg-cyan-200 text-gray-800 text-center hover:bg-cyan-500 shadow-md shadow-gray-700 ${className}`}>
 				<h2 className='text-xl'>{children}</h2>
 			</div>
-		</a>
+		</Link>
 	);
 
 	return (
