@@ -39,12 +39,9 @@ const SnakeIndex = () => {
 					<Physics debug>
 						<SnakeScene />
 						<Snake />
-            <EggController scale={[1.5, 1.5, 1.5]} position={[5, 0.5, -5]} />
-            <FrogController
-              scale={[0.04, 0.04, 0.04]}
-              position={[-15, 1, 5]}
-            />
-            <MiceController scale={[1, 1, 1]} position={[1, 0, 1]} />
+						<EggController scale={[1.5, 1.5, 1.5]} position={[5, 0.5, -5]} />
+						<FrogController scale={[0.04, 0.04, 0.04]} position={[-15, 1, 5]} />
+						<MiceController scale={[1, 1, 1]} position={[1, 0, 1]} />
 					</Physics>
 				</Suspense>
 			</Canvas>
