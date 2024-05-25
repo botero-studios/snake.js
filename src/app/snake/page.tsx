@@ -5,6 +5,9 @@ import { Physics } from "@react-three/rapier";
 import { Suspense, useMemo } from "react";
 import { SnakeScene } from "@/components/SnakeScene";
 import Snake from "@/components/Snake";
+import EggController from "@/controllers/EggController";
+import FrogController from "@/controllers/FrogController";
+import MiceController from "@/controllers/MiceController";
 import { KeyboardControls, KeyboardControlsEntry } from "@react-three/drei";
 import useScore from "@/hooks/useScore";
 import Score from "@/components/Score";
@@ -36,6 +39,12 @@ const SnakeIndex = () => {
 					<Physics debug>
 						<SnakeScene />
 						<Snake />
+            <EggController scale={[1.5, 1.5, 1.5]} position={[5, 0.5, -5]} />
+            <FrogController
+              scale={[0.04, 0.04, 0.04]}
+              position={[-15, 1, 5]}
+            />
+            <MiceController scale={[1, 1, 1]} position={[1, 0, 1]} />
 					</Physics>
 				</Suspense>
 			</Canvas>
